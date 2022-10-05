@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useMemo, useEffect, useState } from "react";
 import debounce from "underscore/modules/debounce.js";
 
 export default function RoverPhotos({ rover, manifest, setActivePhoto }) {
@@ -8,7 +8,7 @@ export default function RoverPhotos({ rover, manifest, setActivePhoto }) {
     const [photos, setPhotos] = useState([]);
 
     const searchParams = new URLSearchParams();
-    activeSol && searchParams.set("sol", activeSol);
+    debouncedSol && searchParams.set("sol", debouncedSol);
     activeCamera && searchParams.set("camera", activeCamera);
 
     const endpoint = `https://mars-photos.herokuapp.com/api/v1/rovers/${rover.slug}/photos?${searchParams.toString()}`;
@@ -17,22 +17,22 @@ export default function RoverPhotos({ rover, manifest, setActivePhoto }) {
         fetch(endpoint)
             .then((response) => response.json())
             .then((data) => {
-                console.log("setPhotos", endpoint);
                 setPhotos(data.photos);
             });
     };
 
-    useEffect(fetchPhotos, [debouncedSol, activeCamera]);
+    useEffect(fetchPhotos, [debouncedSol, activeCamera, endpoint]);
 
     const handleSolChange = function (e) {
         setActiveSol(e.target.value);
         debouncedSolChangeHandler(e);
     };
 
-    const debouncedSolChangeHandler = useCallback(
-        debounce(function (e) {
-            setDebouncedSol(e.target.value);
-        }, 500),
+    const debouncedSolChangeHandler = useMemo(
+        () =>
+            debounce(function (e) {
+                setDebouncedSol(e.target.value);
+            }, 500),
         []
     );
 

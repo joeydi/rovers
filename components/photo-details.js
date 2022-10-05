@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 
 export default function PhotoDetails({ photo, setActivePhoto }) {
-    console.log(photo);
-
     useEffect(() => {
         function handleKeyPress(e) {
             if (e.key === "Escape") {
@@ -15,7 +13,7 @@ export default function PhotoDetails({ photo, setActivePhoto }) {
         return () => {
             window.removeEventListener("keyup", handleKeyPress);
         };
-    }, []);
+    }, [setActivePhoto]);
 
     return (
         <div className="photo-details-wrap">
