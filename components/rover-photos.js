@@ -1,7 +1,7 @@
 import { useMemo, useEffect, useState } from "react";
 import debounce from "underscore/modules/debounce.js";
 
-export default function RoverPhotos({ rover, manifest, setActivePhoto }) {
+export default function RoverPhotos({ rover, manifest, activePhoto, setActivePhoto }) {
     const [activeSol, setActiveSol] = useState(1);
     const [debouncedSol, setDebouncedSol] = useState(1);
     const [activeCamera, setActiveCamera] = useState();
@@ -39,6 +39,32 @@ export default function RoverPhotos({ rover, manifest, setActivePhoto }) {
     const handleCameraChange = function (e) {
         setActiveCamera(e.target.value);
     };
+
+    useEffect(() => {
+        function handleKeyPress(e) {
+            if (!activePhoto) {
+                return;
+            }
+
+            const activePhotoIndex = photos.findIndex((photo) => {
+                return photo.id === activePhoto.id;
+            });
+
+            if (e.key === "ArrowLeft" && activePhotoIndex > 0) {
+                setActivePhoto(photos[activePhotoIndex - 1]);
+            }
+
+            if (e.key === "ArrowRight" && activePhotoIndex < photos.length - 1) {
+                setActivePhoto(photos[activePhotoIndex + 1]);
+            }
+        }
+
+        window.addEventListener("keydown", handleKeyPress);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyPress);
+        };
+    }, [photos, activePhoto, setActivePhoto]);
 
     return (
         <div className="rover-photos">

@@ -11,7 +11,7 @@ export default function RoverDetails({ rover, manifest }) {
     return (
         <div className="rover-details">
             <RoverHero {...{ rover, manifest }} />
-            <RoverPhotos {...{ rover, manifest, setActivePhoto }} />
+            <RoverPhotos {...{ rover, manifest, activePhoto, setActivePhoto }} />
             {activePhoto && <PhotoDetails photo={activePhoto} setActivePhoto={setActivePhoto} />}
         </div>
     );

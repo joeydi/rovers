@@ -8,10 +8,10 @@ export default function PhotoDetails({ photo, setActivePhoto }) {
             }
         }
 
-        window.addEventListener("keyup", handleKeyPress);
+        window.addEventListener("keydown", handleKeyPress);
 
         return () => {
-            window.removeEventListener("keyup", handleKeyPress);
+            window.removeEventListener("keydown", handleKeyPress);
         };
     }, [setActivePhoto]);
 
