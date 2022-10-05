@@ -1,5 +1,6 @@
 import { useMemo, useEffect, useState } from "react";
 import debounce from "underscore/modules/debounce.js";
+import ManifestScrubber from "./manifest-scrubber";
 
 export default function RoverPhotos({ rover, manifest, activePhoto, setActivePhoto }) {
     const [activeSol, setActiveSol] = useState(1);
@@ -70,9 +71,9 @@ export default function RoverPhotos({ rover, manifest, activePhoto, setActivePho
         <div className="rover-photos">
             <div className="sol-select">
                 <span>Sol {activeSol}</span>
-                <input type="range" min="1" max={manifest.max_sol} step="1" onChange={handleSolChange} />
+                <ManifestScrubber {...{ manifest, handleSolChange }} />
             </div>
-            <div className="camera-select">
+            {/* <div className="camera-select">
                 <span>Camera</span>
                 <div className="checkbox-pills">
                     <div className="checkbox">
@@ -88,7 +89,7 @@ export default function RoverPhotos({ rover, manifest, activePhoto, setActivePho
                         );
                     })}
                 </div>
-            </div>
+            </div> */}
             <div className="rover-photos-grid">
                 {photos.map((photo) => (
                     <div

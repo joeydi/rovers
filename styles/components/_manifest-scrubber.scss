@@ -1,0 +1,30 @@
+.manifest-scrubber {
+    // outline: 1px solid red;
+    padding: 20px 0;
+    overflow: visible;
+}
+
+.manifest-scrubber-timeline {
+    display: flex;
+    // pointer-events: none;
+    transition: transform 0.5s cubic-bezier(0, 0, 0, 1);
+}
+
+.manifest-scrubber-sol {
+    position: relative;
+    flex-shrink: 0;
+    width: 10px;
+    height: 100px;
+    margin-right: 2px;
+    border: none;
+    background: rgb(255 255 255 / 0.1);
+
+    div {
+        @include fill;
+        background-color: white;
+    }
+
+    span {
+        display: none;
+    }
+}

@@ -3,6 +3,8 @@
 @import "global/mixins";
 @import "global/reset";
 
+@import "components/manifest-scrubber";
+
 body {
     font-family: "Inter", sans-serif;
     color: $dark-grey;
@@ -108,6 +110,7 @@ body {
     min-height: 100vh;
     margin: 2vw;
     padding: 3vw 5vw;
+    overflow: hidden;
     border-radius: 1vw;
     background-color: $dark-grey;
     color: white;
@@ -116,13 +119,13 @@ body {
 .rover-photos-grid {
     display: flex;
     flex-flow: row wrap;
-    margin: 20px -10px;
+    margin: 20px 0;
     gap: 20px;
 
     .photo {
         position: relative;
         aspect-ratio: 1;
-        width: calc(25% - 20px);
+        width: calc(25% - 15px);
         background-color: black;
     }
 
@@ -133,14 +136,16 @@ body {
 }
 
 .sol-select {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin: 20px 0;
+    // display: flex;
+    // align-items: center;
+    // gap: 20px;
+    margin: 20px 0 40px;
 
-    span {
+    > span {
         flex-shrink: 0;
-        width: 100px;
+        display: block;
+        // width: 100px;
+        margin-bottom: 10px;
     }
 
     input {
