@@ -16,6 +16,7 @@ export default function RoverDetails({ rover, manifest }) {
     ];
 
     const [activeSol, setActiveSol] = useState(1);
+    const [debouncedSol, setDebouncedSol] = useState(1);
     const [activeCamera, setActiveCamera] = useState();
     const [photos, setPhotos] = useState([]);
 
@@ -25,19 +26,28 @@ export default function RoverDetails({ rover, manifest }) {
 
     const endpoint = `https://mars-photos.herokuapp.com/api/v1/rovers/${rover.slug}/photos?${searchParams.toString()}`;
 
-    useEffect(() => {
+    const fetchPhotos = function () {
         fetch(endpoint)
             .then((response) => response.json())
             .then((data) => {
+                console.log("setPhotos", endpoint);
                 setPhotos(data.photos);
             });
-    }, [activeSol, activeCamera]);
+    };
+
+    useEffect(fetchPhotos, [debouncedSol, activeCamera]);
 
     const handleSolChange = function (e) {
         setActiveSol(e.target.value);
+        debouncedSolChangeHandler(e);
     };
 
-    const debouncedSolChangeHandler = useCallback(debounce(handleSolChange, 500), []);
+    const debouncedSolChangeHandler = useCallback(
+        debounce(function (e) {
+            setDebouncedSol(e.target.value);
+        }, 500),
+        []
+    );
 
     const handleCameraChange = function (e) {
         setActiveCamera(e.target.value);
@@ -64,7 +74,7 @@ export default function RoverDetails({ rover, manifest }) {
             <div className="rover-photos">
                 <div className="sol-select">
                     <span>Sol {activeSol}</span>
-                    <input type="range" min="1" max={manifest.max_sol} step="1" onChange={debouncedSolChangeHandler} />
+                    <input type="range" min="1" max={manifest.max_sol} step="1" onChange={handleSolChange} />
                 </div>
                 <div className="camera-select">
                     <span>Camera</span>
