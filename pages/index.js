@@ -12,7 +12,7 @@ export default function RoversIndex() {
                 {rovers.map((rover) => (
                     <Link key={rover.slug} href={`/${rover.slug}`}>
                         <a>
-                            <Image src={`/images/${rover.image}`} width="3000" height="2000" layout="responsive" />
+                            <Image src={`/images/${rover.image}`} width="3000" height="2000" layout="responsive" alt="" />
                             <h2>{rover.name}</h2>
                         </a>
                     </Link>

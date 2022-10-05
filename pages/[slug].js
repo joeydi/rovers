@@ -22,7 +22,7 @@ export default function RoverDetails({ rover, manifest }) {
                     <h1>{rover.name}</h1>
                     <div className="rover-hero-meta">
                         {manifestFields.map((field) => (
-                            <div>
+                            <div key={field.key}>
                                 <strong>{field.name}</strong>
                                 <span>{manifest[field.key]}</span>
                             </div>
