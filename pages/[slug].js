@@ -63,8 +63,8 @@ export default function RoverDetails({ rover, manifest }) {
             </div>
             <div className="rover-photos">
                 <div className="sol-select">
-                    <span>Sol {rover.max_sol}</span>
-                    <input type="range" min="1" max={rover.max_sol} step="1" xxxvalue={activeSol} onChange={debouncedSolChangeHandler} />
+                    <span>Sol {manifest.max_sol}</span>
+                    <input type="range" min="1" max={manifest.max_sol} step="1" onChange={debouncedSolChangeHandler} />
                 </div>
                 <div className="camera-select">
                     <span>Camera</span>
