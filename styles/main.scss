@@ -1,0 +1,121 @@
+@import "global/variables";
+@import "global/functions";
+@import "global/mixins";
+@import "global/reset";
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+.rovers-index-hero {
+    display: flex;
+    align-items: center;
+    min-height: 25vh;
+    padding: 5vw;
+    background-color: $dark-grey;
+    color: white;
+}
+
+.rovers-index-links {
+    height: 75vh;
+    display: flex;
+
+    a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        text-decoration: none;
+        color: white;
+
+        &::after {
+            @include fill;
+            content: "";
+            background-image: linear-gradient(to bottom, rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.5));
+        }
+
+        img {
+            @include fill;
+            object-fit: cover;
+        }
+
+        h2 {
+            position: relative;
+            z-index: 1;
+        }
+    }
+}
+
+.rover-hero {
+    position: relative;
+    height: 100vh;
+}
+
+.rover-hero-image {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    img {
+        @include fill;
+        object-fit: cover;
+    }
+
+    &::after {
+        @include fill;
+        content: "";
+        background-image: linear-gradient(to bottom, rgb(0 0 0 / 0.25), rgb(0 0 0 / 0.75));
+    }
+}
+
+.rover-hero-content {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 5vw;
+    color: white;
+
+    h1 {
+        margin-bottom: 0.25em;
+        border-bottom: 1px solid rgba(255 255 255 / 0.5);
+    }
+}
+
+.rover-hero-meta {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+
+    div {
+        min-width: 100px;
+
+        strong {
+            display: block;
+            font-size: rem(12px);
+            opacity: 0.75;
+        }
+
+        span {
+            display: block;
+            font-size: rem(16px);
+        }
+    }
+}
+
+h1 {
+    line-height: 1;
+    font-size: 6vw;
+    text-transform: uppercase;
+    font-family: $font-family-condensed;
+}
+
+h2 {
+    line-height: 1;
+    font-size: 2vw;
+    text-transform: uppercase;
+    font-family: $font-family-condensed;
+}
