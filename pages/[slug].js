@@ -85,8 +85,8 @@ export default function RoverDetails({ rover, manifest }) {
                 </div>
                 <div className="rover-photos-grid">
                     {photos.map((photo) => (
-                        <div className="photo">
-                            <img key={photo.id} src={photo.img_src} alt="" loading="lazy" />
+                        <div key={photo.id} className="photo">
+                            <img src={photo.img_src} alt="" loading="lazy" />
                         </div>
                     ))}
                 </div>
