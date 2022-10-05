@@ -229,8 +229,13 @@ body {
         padding: 2vw;
         background-color: white;
 
+        h2,
         p {
             margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(rem(30px), 4vw, rem(60px));
         }
 
         strong {

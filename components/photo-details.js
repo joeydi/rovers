@@ -22,6 +22,7 @@ export default function PhotoDetails({ photo, setActivePhoto }) {
                     <img src={photo.img_src} alt="" loading="lazy" />
                 </div>
                 <div className="details">
+                    <h2>{photo.id}</h2>
                     <p>
                         <strong>Rover</strong>
                         <span>{photo.rover.name}</span>
