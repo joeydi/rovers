@@ -5,6 +5,7 @@
 
 body {
     font-family: "Inter", sans-serif;
+    color: $dark-grey;
 }
 
 .rovers-index-hero {
@@ -127,7 +128,7 @@ body {
 
     img {
         @include fill;
-        object-fit: contain;
+        object-fit: cover;
     }
 }
 
@@ -190,6 +191,58 @@ body {
     input:checked + label {
         background-color: $green;
         color: white;
+    }
+}
+
+.photo-details-wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(0 0 0 / 0.75);
+}
+
+.photo-details {
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+
+    .photo {
+        position: relative;
+        width: calc(100% - 300px);
+        aspect-ratio: 1;
+        background-color: black;
+
+        img {
+            @include fill;
+            object-fit: contain;
+        }
+    }
+
+    .details {
+        width: 400px;
+        padding: 2vw;
+        background-color: white;
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        strong {
+            display: block;
+            font-size: rem(12px);
+            opacity: 0.75;
+        }
+
+        span {
+            display: block;
+            font-size: rem(16px);
+        }
     }
 }
 

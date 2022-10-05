@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import debounce from "underscore/modules/debounce.js";
 
-export default function RoverPhotos({ rover, manifest }) {
+export default function RoverPhotos({ rover, manifest, setActivePhoto }) {
     const [activeSol, setActiveSol] = useState(1);
     const [debouncedSol, setDebouncedSol] = useState(1);
     const [activeCamera, setActiveCamera] = useState();
@@ -65,7 +65,12 @@ export default function RoverPhotos({ rover, manifest }) {
             </div>
             <div className="rover-photos-grid">
                 {photos.map((photo) => (
-                    <div key={photo.id} className="photo">
+                    <div
+                        key={photo.id}
+                        className="photo"
+                        onClick={() => {
+                            setActivePhoto(photo);
+                        }}>
                         <img src={photo.img_src} alt="" loading="lazy" />
                     </div>
                 ))}

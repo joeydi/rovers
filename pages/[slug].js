@@ -1,12 +1,18 @@
+import { useState } from "react";
+
 import { rovers } from "../data/rovers.js";
 import RoverHero from "../components/rover-hero.js";
 import RoverPhotos from "../components/rover-photos.js";
+import PhotoDetails from "../components/photo-details.js";
 
 export default function RoverDetails({ rover, manifest }) {
+    const [activePhoto, setActivePhoto] = useState();
+
     return (
         <div className="rover-details">
             <RoverHero {...{ rover, manifest }} />
-            <RoverPhotos {...{ rover, manifest }} />
+            <RoverPhotos {...{ rover, manifest, setActivePhoto }} />
+            {activePhoto && <PhotoDetails photo={activePhoto} setActivePhoto={setActivePhoto} />}
         </div>
     );
 }
