@@ -1,11 +1,5 @@
 export const rovers = [
     {
-        name: "Curiosity",
-        slug: "curiosity",
-        image: "rover-curiosity.jpg",
-        cameras: ["FHAZ", "MAHLI", "MARDI", "MAST", "NAVCAM", "RHAZ"],
-    },
-    {
         name: "Spirit",
         slug: "spirit",
         image: "rover-spirit.jpg",
@@ -16,6 +10,12 @@ export const rovers = [
         slug: "opportunity",
         image: "rover-opportunity.jpg",
         cameras: ["FHAZ", "MINITES", "NAVCAM", "PANCAM", "RHAZ"],
+    },
+    {
+        name: "Curiosity",
+        slug: "curiosity",
+        image: "rover-curiosity.jpg",
+        cameras: ["FHAZ", "MAHLI", "MARDI", "MAST", "NAVCAM", "RHAZ"],
     },
     {
         name: "Perseverance",
