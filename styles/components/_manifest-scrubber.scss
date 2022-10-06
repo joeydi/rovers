@@ -19,6 +19,13 @@
     border-radius: 5px;
     background: rgb(255 255 255 / 0.1);
     cursor: pointer;
+    transition: transform 1s, background-color 1s;
+
+    &:hover {
+        background: rgb(255 255 255 / 0.25);
+        transform: scaleY(1.25);
+        transition: transform 0.1s, background-color 0.1s;
+    }
 
     div {
         position: absolute;
