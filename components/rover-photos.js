@@ -56,7 +56,7 @@ export default function RoverPhotos({ rover, manifest, activePhoto, setActivePho
     return (
         <div className="rover-photos">
             <div className="sol-select">
-                <span>Sol {activeSol}</span>
+                <h2>Sol {activeSol}</h2>
                 <ManifestScrubber {...{ manifest, setActiveSol }} />
             </div>
             {/* <div className="camera-select">
