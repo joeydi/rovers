@@ -1,26 +1,33 @@
 .manifest-scrubber {
-    // outline: 1px solid red;
     padding: 20px 0;
     overflow: visible;
 }
 
 .manifest-scrubber-timeline {
     display: flex;
-    // pointer-events: none;
     transition: transform 0.5s cubic-bezier(0, 0, 0, 1);
 }
 
 .manifest-scrubber-sol {
     position: relative;
     flex-shrink: 0;
-    width: 10px;
+    width: 12px;
     height: 100px;
-    margin-right: 2px;
+    padding: 0;
     border: none;
+    border-right: 2px solid $dark-grey;
+    border-radius: 5px;
     background: rgb(255 255 255 / 0.1);
+    cursor: pointer;
 
     div {
-        @include fill;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        min-height: 10px;
+        border-radius: 5px;
         background-color: white;
     }
 

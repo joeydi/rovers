@@ -3,13 +3,12 @@ import debounce from "underscore/modules/debounce.js";
 import ManifestScrubber from "./manifest-scrubber";
 
 export default function RoverPhotos({ rover, manifest, activePhoto, setActivePhoto }) {
-    const [activeSol, setActiveSol] = useState(1);
-    const [debouncedSol, setDebouncedSol] = useState(1);
+    const [activeSol, setActiveSol] = useState(manifest.photos[0].sol);
     const [activeCamera, setActiveCamera] = useState();
     const [photos, setPhotos] = useState([]);
 
     const searchParams = new URLSearchParams();
-    debouncedSol && searchParams.set("sol", debouncedSol);
+    searchParams.set("sol", activeSol);
     activeCamera && searchParams.set("camera", activeCamera);
 
     const endpoint = `https://mars-photos.herokuapp.com/api/v1/rovers/${rover.slug}/photos?${searchParams.toString()}`;
@@ -22,20 +21,7 @@ export default function RoverPhotos({ rover, manifest, activePhoto, setActivePho
             });
     };
 
-    useEffect(fetchPhotos, [debouncedSol, activeCamera, endpoint]);
-
-    const handleSolChange = function (e) {
-        setActiveSol(e.target.value);
-        debouncedSolChangeHandler(e);
-    };
-
-    const debouncedSolChangeHandler = useMemo(
-        () =>
-            debounce(function (e) {
-                setDebouncedSol(e.target.value);
-            }, 500),
-        []
-    );
+    useEffect(fetchPhotos, [activeSol, activeCamera, endpoint]);
 
     const handleCameraChange = function (e) {
         setActiveCamera(e.target.value);
@@ -71,7 +57,7 @@ export default function RoverPhotos({ rover, manifest, activePhoto, setActivePho
         <div className="rover-photos">
             <div className="sol-select">
                 <span>Sol {activeSol}</span>
-                <ManifestScrubber {...{ manifest, handleSolChange }} />
+                <ManifestScrubber {...{ manifest, setActiveSol }} />
             </div>
             {/* <div className="camera-select">
                 <span>Camera</span>
