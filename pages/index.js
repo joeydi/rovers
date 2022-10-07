@@ -6,7 +6,7 @@ export default function RoversIndex() {
     return (
         <div className="rovers-index">
             <div className="rovers-index-hero">
-                <h1>Rovers</h1>
+                <h1>Mars Rovers</h1>
             </div>
             <div className="rovers-index-links">
                 {rovers.map((rover) => (
